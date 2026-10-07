@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: 'postgres:17'
+    environment:
+      - 'POSTGRES_DB=exchange'
+      - 'POSTGRES_USER=exchange'
+      - 'POSTGRES_PASSWORD=exchange'
+    ports:
+      - '5432:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U exchange -d exchange']
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # Kafka(Week 7)와 Redis(Week 9)는 그 단계에서 여기에 추가한다.

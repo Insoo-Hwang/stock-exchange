@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: stock-exchange
+  docker:
+    compose:
+      lifecycle-management: start-only
+  jpa:
+    open-in-view: false
+    hibernate:
+      # 스키마는 Flyway만 바꾼다. JPA는 엔티티와 스키마가 맞는지 검사만 한다.
+      ddl-auto: validate
+
+management:
+  endpoints:
+    web:
+      exposure:
+        # metrics: 7-3 측정 때 HikariCP 대기(hikaricp.connections.pending) 등을 본다
+        include: health,info,metrics
